@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "796470208706",
+    "project_id": "rampage-5207d",
+    "storage_bucket": "rampage-5207d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796470208706:android:c7a06587113c6404f0735b",
+        "android_client_info": {
+          "package_name": "com.ar.backgroundlocation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXb0wsH_54lXcLtPvEj3-Br8beAXrtFh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
