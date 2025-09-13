@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.ar.backgroundlocation"
-    compileSdk = 34
+    compileSdk = 35  // Actualizado de 34 a 35
 
     defaultConfig {
         applicationId = "com.ar.backgroundlocation"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35  // Actualizado de 34 a 35
         versionCode = 1
         versionName = "1.0"
 
@@ -53,7 +53,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -66,6 +65,17 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.firestore)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+
+    // Google Maps para Compose
+    implementation("com.google.maps.android:maps-compose:2.11.4")
+    // Servicios de Google Play para Maps
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.gms:play-services-location:21.2.0")
+    // Firebase Firestore
+    implementation("com.google.firebase:firebase-firestore:25.0.0")  // Versión más reciente
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -74,7 +84,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-
     // Location Services
-    implementation (libs.play.services.location)
+    implementation(libs.play.services.location)
 }

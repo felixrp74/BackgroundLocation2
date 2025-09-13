@@ -15,15 +15,50 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 /**
  * @Author: Abdul Rehman
  * @Date: 06/05/2024.
  */
-@Preview
+
 @Composable
 fun App() {
+    val navController = rememberNavController()
+    val context = LocalContext.current
+
+    NavHost(navController = navController, startDestination = "main") {
+        composable("main") {
+            MainScreen(
+                onNavigateToMap = { navController.navigate("map") },
+                onStartLocationService = {
+                    Intent(context, LocationService::class.java).apply {
+                        action = LocationService.ACTION_SERVICE_START
+                        context.startService(this)
+                    }
+                },
+                onStopLocationService = {
+                    Intent(context, LocationService::class.java).apply {
+                        action = LocationService.ACTION_SERVICE_STOP
+                        context.startService(this)
+                    }
+                }
+            )
+        }
+        composable("map") {
+            MapScreen()
+        }
+    }
+}
+
+@Composable
+fun MainScreen(
+    onNavigateToMap: () -> Unit,
+    onStartLocationService: () -> Unit,
+    onStopLocationService: () -> Unit
+) {
     val context = LocalContext.current
 
     Column(
@@ -32,26 +67,34 @@ fun App() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(onClick = {
-            //Start Service
             Toast.makeText(context, "Boton de inicialización GPS", Toast.LENGTH_SHORT).show()
-            Intent(context, LocationService::class.java).apply {
-                action = LocationService.ACTION_SERVICE_START
-                context.startService(this)
-            }
+            onStartLocationService()
         }) {
-            Text(text = "Iniciar")
+            Text(text = "Iniciar GPS")
         }
-        Spacer(modifier = Modifier.padding(12.dp))
-        Button(onClick = {
-            //Stop Service
-            Toast.makeText(context, "Boton de finalización GPS", Toast.LENGTH_SHORT).show()
-            Intent(context, LocationService::class.java).apply {
-                action = LocationService.ACTION_SERVICE_STOP
-                context.startService(this)
-            }
-        }) {
-            Text(text = "Finalizar")
 
+        Spacer(modifier = Modifier.padding(12.dp))
+
+        Button(onClick = {
+            Toast.makeText(context, "Boton de finalización GPS", Toast.LENGTH_SHORT).show()
+            onStopLocationService()
+        }) {
+            Text(text = "Finalizar GPS")
+        }
+
+        Spacer(modifier = Modifier.padding(12.dp))
+
+        Button(onClick = {
+            Toast.makeText(context, "Ver mapa en tiempo real", Toast.LENGTH_SHORT).show()
+            onNavigateToMap()
+        }) {
+            Text(text = "Ver Mapa")
         }
     }
+}
+
+@Preview
+@Composable
+fun AppPreview() {
+    App()
 }
