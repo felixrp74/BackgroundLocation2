@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -18,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+//import com.ar.backgroundlocation.network.LoginService
 
 /**
  * @Author: Abdul Rehman
@@ -28,8 +30,16 @@ import androidx.navigation.compose.rememberNavController
 fun App() {
     val navController = rememberNavController()
     val context = LocalContext.current
+//    val loginService = remember { LoginService(context) }
+//    val startDestination = if (loginService.isLoggedIn()) "main" else "login"
 
     NavHost(navController = navController, startDestination = "main") {
+//        composable("login") {
+//            LoginScreen(
+//                onLoginSuccess = { navController.navigate("main") },
+//                loginService = loginService
+//            )
+//        }
         composable("main") {
             MainScreen(
                 onNavigateToMap = { navController.navigate("map") },
@@ -98,3 +108,67 @@ fun MainScreen(
 fun AppPreview() {
     App()
 }
+
+
+
+//
+//
+//@Composable
+//fun LoginScreen(
+//    onLoginSuccess: () -> Unit,
+//    loginService: LoginService
+//) {
+//    val context = LocalContext.current
+//    var username by remember { mutableStateOf("") }
+//    var password by remember { mutableStateOf("") }
+//    var isLoading by remember { mutableStateOf(false) }
+//    val scope = rememberCoroutineScope()
+//
+//    Column(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .padding(24.dp),
+//        verticalArrangement = Arrangement.Center,
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//        Text("Iniciar Sesión", style = MaterialTheme.typography.headlineMedium)
+//
+//        Spacer(modifier = Modifier.height(16.dp))
+//
+//        OutlinedTextField(
+//            value = username,
+//            onValueChange = { username = it },
+//            label = { Text("Usuario") }
+//        )
+//
+//        Spacer(modifier = Modifier.height(8.dp))
+//
+//        OutlinedTextField(
+//            value = password,
+//            onValueChange = { password = it },
+//            label = { Text("Contraseña") },
+//            visualTransformation = PasswordVisualTransformation()
+//        )
+//
+//        Spacer(modifier = Modifier.height(16.dp))
+//
+//        Button(
+//            onClick = {
+//                isLoading = true
+//                scope.launch {
+//                    val success = loginService.login(username, password)
+//                    isLoading = false
+//                    if (success) {
+//                        Toast.makeText(context, "Sesión iniciada", Toast.LENGTH_SHORT).show()
+//                        onLoginSuccess()
+//                    } else {
+//                        Toast.makeText(context, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//            },
+//            enabled = !isLoading
+//        ) {
+//            Text(if (isLoading) "Cargando..." else "Ingresar")
+//        }
+//    }
+//}

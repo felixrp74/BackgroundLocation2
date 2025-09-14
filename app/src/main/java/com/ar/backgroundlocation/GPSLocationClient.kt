@@ -40,8 +40,8 @@ class GPSLocationClient {
 
         val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 5000)
             .setWaitForAccurateLocation(false)
-            .setMinUpdateIntervalMillis(1000)
-            .setMaxUpdateDelayMillis(5000)
+            .setMinUpdateIntervalMillis(10000)
+            .setMaxUpdateDelayMillis(10000)
             .build();
 
 
