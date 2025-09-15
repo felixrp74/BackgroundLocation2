@@ -87,7 +87,7 @@ fun MapScreen() {
 
         // Loading indicator
         if (currentLocation == null) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+//            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
     }
 

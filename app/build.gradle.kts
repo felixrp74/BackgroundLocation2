@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin)
     alias(libs.plugins.googleGmsGoogleServices)
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -75,6 +76,11 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.2.0")
     // Firebase Firestore
     implementation("com.google.firebase:firebase-firestore:25.0.0")  // Versión más reciente
+
+    implementation("io.ktor:ktor-client-core:2.3.9")
+    implementation("io.ktor:ktor-client-android:2.3.9")
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.9")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.9")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
